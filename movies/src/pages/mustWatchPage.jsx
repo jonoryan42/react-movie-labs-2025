@@ -40,7 +40,6 @@ const MustWatchPage = () => {
     <PageTemplate
       title="Must Watch Movies"
       movies={movies}
-    //   action={() => null}
       action={(movie) => {
         return (
           <>
