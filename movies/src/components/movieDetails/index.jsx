@@ -9,7 +9,9 @@ import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews";
-
+import { Link } from "react-router";
+import CardActions from "@mui/material/CardActions";
+import Button from "@mui/material/Button";
 
 const root = {
     display: "flex",
@@ -21,7 +23,7 @@ const root = {
 };
 const chip = { margin: 0.5 };
 
-const MovieDetails = ({ movie }) => {  // Don't miss this!
+const MovieDetails = ({ movie, action }) => {  // Don't miss this!
 const [drawerOpen, setDrawerOpen] = useState(false);
 
 
@@ -89,6 +91,17 @@ const [drawerOpen, setDrawerOpen] = useState(false);
       <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <MovieReviews movie={movie} />
       </Drawer>
+
+      <CardActions disableSpacing>
+      
+        {action && action(movie)}
+      
+        <Link to={`/credits/${movie.id}`}>
+          <Button variant="outlined" size="medium" color="primary">
+            Credits
+          </Button>
+        </Link>
+      </CardActions>
 
       </>
   );
