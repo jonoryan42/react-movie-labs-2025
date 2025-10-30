@@ -81,16 +81,6 @@ export default function MovieCard({ movie, action }) {
             More Info ...
           </Button>
         </Link>
-
-        {/* {action(upcoming)}
-
-        <AddToPlaylistIcon fontSize="large" />
-        <Link to={`/movies/${movie.id}`}>
-          <Button variant="outlined" size="medium" color="primary">
-            More Info ...
-          </Button>
-        </Link> */}
-        
       </CardActions>
 
     </Card>
