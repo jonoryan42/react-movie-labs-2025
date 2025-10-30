@@ -19,7 +19,8 @@ import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 
 export default function MovieCard({ movie, action }) {
   const { favorites, addToFavorites } = useContext(MoviesContext);
-  const { mustWatches, addToMustWatch } = useContext(MoviesContext);
+  // const { mustWatches, addToMustWatch } = useContext(MoviesContext);
+  const { mustWatches } = useContext(MoviesContext);
 
   if (favorites.find((id) => id === movie.id)) {
     movie.favorite = true;

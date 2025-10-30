@@ -4,14 +4,11 @@ import PageTemplate from '../components/templateMovieListPage';
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../components/spinner';
 import AddToPlaylistIcon from '../components/cardIcons/addToPlaylist';
-import Snackbar from "@mui/material/Snackbar";
-import Alert from "@mui/material/Alert";
-
 
 const UpcomingPage = (props) => {
 
   const { data, error, isPending, isError } = useQuery({
-    queryKey: ['discover'],
+    queryKey: ['upcoming'],
     queryFn: getUpcomingMovies,
   })
 
@@ -27,10 +24,6 @@ const UpcomingPage = (props) => {
 
   const mustWatches = upcomingMovies.filter(m => m.mustWatch)
   localStorage.setItem('mustWatches', JSON.stringify(mustWatches))
-
-  const [open, setOpen] = React.useState(false);
-  const [message, setMessage] = React.useState("");
-
 
      return (
       <PageTemplate
