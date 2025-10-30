@@ -1,8 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Header from "../headerMovieList";
 import FilterCard from "../filterMoviesCard";
 import MovieList from "../movieList";
 import Grid from "@mui/material/Grid";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+import { MoviesContext } from "../../contexts/moviesContext";
+import { useNavigate } from "react-router";
+import Typography from "@mui/material/Typography";
+
+
 
 function MovieListPageTemplate({ movies, title, action }) {
   const [nameFilter, setNameFilter] = useState("");
@@ -42,6 +49,7 @@ function MovieListPageTemplate({ movies, title, action }) {
         <MovieList action={action} movies={displayedMovies}></MovieList>
       </Grid>
     </Grid>
+    
   );
 }
 export default MovieListPageTemplate;

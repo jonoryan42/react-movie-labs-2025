@@ -2,9 +2,10 @@ import React from "react";
 import { getUpcomingMovies } from "../api/tmdb-api";
 import PageTemplate from '../components/templateMovieListPage';
 import { useQuery } from '@tanstack/react-query';
-import { useLocation } from "react-router";
 import Spinner from '../components/spinner';
 import AddToPlaylistIcon from '../components/cardIcons/addToPlaylist';
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 
 const UpcomingPage = (props) => {
@@ -23,6 +24,13 @@ const UpcomingPage = (props) => {
   }
   
   const upcomingMovies = data.results;
+
+  const mustWatches = upcomingMovies.filter(m => m.mustWatch)
+  localStorage.setItem('mustWatches', JSON.stringify(mustWatches))
+
+  const [open, setOpen] = React.useState(false);
+  const [message, setMessage] = React.useState("");
+
 
      return (
       <PageTemplate
