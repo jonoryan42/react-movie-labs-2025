@@ -15,15 +15,22 @@ import img from '../../images/film-poster-placeholder.png'
 import { Link } from "react-router";
 import Avatar from '@mui/material/Avatar';
 import { MoviesContext } from "../../contexts/moviesContext";
-import AddToPlaylistIcon from "../cardIcons/addToPlaylist";
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 
 export default function MovieCard({ movie, action }) {
   const { favorites, addToFavorites } = useContext(MoviesContext);
+  const { mustWatches, addToMustWatch } = useContext(MoviesContext);
 
   if (favorites.find((id) => id === movie.id)) {
     movie.favorite = true;
   } else {
     movie.favorite = false
+  }
+
+   if (mustWatches.find((id) => id === movie.id)) {
+    movie.mustWatch = true;
+  } else {
+    movie.mustWatch = false
   }
 
   const handleAddToFavorite = (e) => {
@@ -35,11 +42,16 @@ export default function MovieCard({ movie, action }) {
   return (
     <Card>
       <CardHeader
+      //Favorite Movie Icon takes priority(if possible to favorite and add to must watch)
         avatar={
           movie.favorite ? (
             <Avatar sx={{ backgroundColor: 'red' }}>
               <FavoriteIcon />
             </Avatar>
+          ) : movie.mustWatch ? (
+      <Avatar sx={{ backgroundColor: "red" }}>
+        <PlaylistAddIcon />
+      </Avatar>
           ) : null
         }
         title={
