@@ -9,6 +9,7 @@ import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews";
+import { Link } from "react-router";
 
 
 const root = {
@@ -27,18 +28,56 @@ const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
     <>
+    <br></br>
       <Typography variant="h5" component="h3">
         Credits
       </Typography>
+      <br></br>
+
+      <Typography variant="h6" component="h3">
+        Director
+      </Typography>
+
+       <Typography variant="p" component="p" sx={{ listStyleType: "none", paddingLeft: 0, marginLeft: 0 }}>
+        {credits.crew?.filter((member) => member.job === "Director").map((c) => (
+            <li key={c.id}>
+              <Link to={`/person/${c.id}`}
+              style={{ fontWeight: "bold", textDecoration: "none" }}>{c.name}</Link>
+            </li>
+        ))}
+      </Typography>
+      <br></br>
+
+      <Typography variant="h6" component="h3">
+        Cast
+      </Typography>
       
-      <Typography variant="h6" component="ul">
+      <Typography variant="p" component="ul" sx={{ listStyleType: "none", paddingLeft: 0, marginLeft: 0 }}>
         {credits.cast?.map((c) => (
             <li key={c.id}>
-              {c.name} as {c.character}
+              <Link to={`/person/${c.id}`}
+              style={{ fontWeight: "bold", textDecoration: "none" }}>{c.name}</Link> as {c.character}
             </li>
         ))}
       </Typography>
 
+      <br></br>
+      
+       <Typography variant="h6" component="h3">
+        Crew
+      </Typography>
+
+      <Typography variant="p" component="ul" sx={{ listStyleType: "none", paddingLeft: 0, marginLeft: 0 }}>
+        {credits.crew?.map((c) => (
+            <li key={c.id}>
+              <Link to={`/person/${c.id}`}
+              style={{ fontWeight: "bold", textDecoration: "none" }}>{c.name}</Link>
+            </li>
+        ))}
+      </Typography>
+
+      <br></br>
+      
       </>
   );
 };
