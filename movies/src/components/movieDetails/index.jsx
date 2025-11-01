@@ -9,7 +9,10 @@ import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews";
-
+import { Link } from "react-router";
+import CardActions from "@mui/material/CardActions";
+import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
 
 const root = {
     display: "flex",
@@ -21,24 +24,34 @@ const root = {
 };
 const chip = { margin: 0.5 };
 
-const MovieDetails = ({ movie }) => {  // Don't miss this!
+const MovieDetails = ({ movie, action }) => {  // Don't miss this!
 const [drawerOpen, setDrawerOpen] = useState(false);
 
 
   return (
     <>
+    <Paper
+      component="ul" 
+      sx={{...root}}
+      >
       <Typography variant="h5" component="h3">
         Overview
       </Typography>
+      <Divider sx={{my: 3, borderColor: "grey"}} ></Divider>
 
       <Typography variant="h6" component="p">
         {movie.overview}
-      </Typography>
+        <Divider sx={{my: 3, borderColor: "grey"}} ></Divider>
 
-      <Paper 
+      </Typography>
+      {/* </Paper> */}
+
+      {/* <Paper 
         component="ul" 
-        sx={{...root}}
-      >
+        sx={{...root}} */}
+      {/* > */}
+
+
         <li>
           <Chip label="Genres" sx={{...chip}} color="primary" />
         </li>
@@ -89,6 +102,17 @@ const [drawerOpen, setDrawerOpen] = useState(false);
       <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <MovieReviews movie={movie} />
       </Drawer>
+
+      <CardActions disableSpacing>
+      
+        {action && action(movie)}
+      
+        <Link to={`/credits/${movie.id}`}>
+          <Button variant="outlined" size="medium" color="primary">
+            Credits
+          </Button>
+        </Link>
+      </CardActions>
 
       </>
   );

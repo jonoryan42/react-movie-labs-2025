@@ -15,15 +15,23 @@ import img from '../../images/film-poster-placeholder.png'
 import { Link } from "react-router";
 import Avatar from '@mui/material/Avatar';
 import { MoviesContext } from "../../contexts/moviesContext";
-import AddToPlaylistIcon from "../cardIcons/addToPlaylist";
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 
 export default function MovieCard({ movie, action }) {
   const { favorites, addToFavorites } = useContext(MoviesContext);
+  // const { mustWatches, addToMustWatch } = useContext(MoviesContext);
+  const { mustWatches } = useContext(MoviesContext);
 
   if (favorites.find((id) => id === movie.id)) {
     movie.favorite = true;
   } else {
     movie.favorite = false
+  }
+
+   if (mustWatches.find((id) => id === movie.id)) {
+    movie.mustWatch = true;
+  } else {
+    movie.mustWatch = false
   }
 
   const handleAddToFavorite = (e) => {
@@ -35,11 +43,16 @@ export default function MovieCard({ movie, action }) {
   return (
     <Card>
       <CardHeader
+      //Favorite Movie Icon takes priority(if possible to favorite and add to must watch)
         avatar={
           movie.favorite ? (
             <Avatar sx={{ backgroundColor: 'red' }}>
               <FavoriteIcon />
             </Avatar>
+          ) : movie.mustWatch ? (
+      <Avatar sx={{ backgroundColor: "red" }}>
+        <PlaylistAddIcon />
+      </Avatar>
           ) : null
         }
         title={
@@ -48,24 +61,26 @@ export default function MovieCard({ movie, action }) {
           </Typography>
         }
       />
+      <Link to={`/movies/${movie.id}`}>
       <CardMedia
-        sx={{ height: 500 }}
+        sx={{ height: 350 }}
         image={
           movie.poster_path
             ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
             : img
         }
       />
+      / </Link>
       <CardContent>
         <Grid container>
           <Grid size={{xs: 6}}>
-            <Typography variant="h6" component="p">
+            <Typography variant="h7" component="p">
               <CalendarIcon fontSize="small" />
-              {movie.release_date}
+              {" "} {movie.release_date}
             </Typography>
           </Grid>
           <Grid size={{xs: 6}}>
-            <Typography variant="h6" component="p">
+            <Typography variant="h7" component="p">
               <StarRateIcon fontSize="small" />
               {"  "} {movie.vote_average}{" "}
             </Typography>
