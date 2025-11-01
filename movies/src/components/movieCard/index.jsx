@@ -61,6 +61,7 @@ export default function MovieCard({ movie, action }) {
           </Typography>
         }
       />
+      <Link to={`/movies/${movie.id}`}>
       <CardMedia
         sx={{ height: 350 }}
         image={
@@ -69,16 +70,17 @@ export default function MovieCard({ movie, action }) {
             : img
         }
       />
+      / </Link>
       <CardContent>
         <Grid container>
           <Grid size={{xs: 6}}>
-            <Typography variant="h6" component="p">
+            <Typography variant="h7" component="p">
               <CalendarIcon fontSize="small" />
-              {movie.release_date}
+              {" "} {movie.release_date}
             </Typography>
           </Grid>
           <Grid size={{xs: 6}}>
-            <Typography variant="h6" component="p">
+            <Typography variant="h7" component="p">
               <StarRateIcon fontSize="small" />
               {"  "} {movie.vote_average}{" "}
             </Typography>

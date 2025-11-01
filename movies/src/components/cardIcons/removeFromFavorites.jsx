@@ -16,6 +16,7 @@ const RemoveFromFavoritesIcon = ({ movie }) => {
       onClick={handleRemoveFromFavorites}
     >
       <DeleteIcon color="primary" fontSize="large" />
+      {" "}
     </IconButton>
   );
 };

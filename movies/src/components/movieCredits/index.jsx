@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews";
 import { Link } from "react-router";
+import Divider from "@mui/material/Divider";
 
 
 const root = {
@@ -23,55 +24,54 @@ const root = {
 const chip = { margin: 0.5 };
 
 const MovieCredits = ({ credits }) => {  // Don't miss this!
-const [drawerOpen, setDrawerOpen] = useState(false);
-
 
   return (
     <>
     <br></br>
-      <Typography variant="h5" component="h3">
+      <Typography variant="h5" component="h3" textAlign={"center"}>
         Credits
       </Typography>
       <br></br>
 
-      <Typography variant="h6" component="h3">
+      <Typography variant="h6" component="h3" textAlign={"center"}>
         Director
       </Typography>
 
-       <Typography variant="p" component="p" sx={{ listStyleType: "none", paddingLeft: 0, marginLeft: 0 }}>
+       <Typography variant="p" component="p" textAlign={"center"} sx={{ listStyleType: "none", paddingLeft: 0, marginLeft: 0 }}>
         {credits.crew?.filter((member) => member.job === "Director").map((c) => (
             <li key={c.id}>
               <Link to={`/person/${c.id}`}
-              style={{ fontWeight: "bold", textDecoration: "none" }}>{c.name}</Link>
+              style={{ fontWeight: "bold", textDecoration: "none", color: "black" }}>{c.name}</Link>
             </li>
         ))}
       </Typography>
+
       <br></br>
 
-      <Typography variant="h6" component="h3">
+      <Typography variant="h6" component="h3" textAlign={"center"}>
         Cast
       </Typography>
       
-      <Typography variant="p" component="ul" sx={{ listStyleType: "none", paddingLeft: 0, marginLeft: 0 }}>
+      <Typography variant="p" component="ul" textAlign={"center"} sx={{ listStyleType: "none", paddingLeft: 0, marginLeft: 0 }}>
         {credits.cast?.map((c) => (
             <li key={c.id}>
               <Link to={`/person/${c.id}`}
-              style={{ fontWeight: "bold", textDecoration: "none" }}>{c.name}</Link> as {c.character}
+              style={{ fontWeight: "bold", textDecoration: "none", color: "black" }}>{c.name}</Link> as {c.character}
             </li>
         ))}
       </Typography>
 
       <br></br>
       
-       <Typography variant="h6" component="h3">
+       <Typography variant="h6" component="h3" textAlign={"center"}>
         Crew
       </Typography>
 
-      <Typography variant="p" component="ul" sx={{ listStyleType: "none", paddingLeft: 0, marginLeft: 0 }}>
+      <Typography variant="p" component="ul" textAlign={"center"} sx={{ listStyleType: "none", paddingLeft: 0, marginLeft: 0 }}>
         {credits.crew?.map((c) => (
             <li key={c.id}>
               <Link to={`/person/${c.id}`}
-              style={{ fontWeight: "bold", textDecoration: "none" }}>{c.name}</Link>
+              style={{ fontWeight: "bold", textDecoration: "none", color: "black" }}>{c.name}</Link>
             </li>
         ))}
       </Typography>

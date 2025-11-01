@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews";
 import { Link } from "react-router";
+import Divider from "@mui/material/Divider";
 
 
 const root = {
@@ -26,19 +27,28 @@ const PersonDetails = ({ person }) => {
 
   return (
     <>
+    {/* <Paper
+      component="ul" 
+      sx={{...root}}
+      > */}
 
     <Chip label={`${person.known_for_department}`}/>
       <br></br>
       <br></br>
+      <Paper
+      component="ul" 
+      sx={{...root}}
+      >
 
     <Typography variant="h5" component="h5">
         Biography
       </Typography>
-      <br></br>
+      <Divider sx={{my: 3, borderColor: "grey"}} ></Divider>
 
         <Typography variant="h6" component="p">
         {person.biography}
         </Typography>
+        </Paper>
 
         <br></br>
       </>
